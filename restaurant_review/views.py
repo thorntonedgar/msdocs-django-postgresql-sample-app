@@ -14,6 +14,8 @@ def index(request):
     print('Request for index page received')
     restaurants = Restaurant.objects.annotate(avg_rating=Avg('review__rating')).annotate(review_count=Count('review'))
     lastViewedRestaurant = request.session.get("lastViewedRestaurant", False)
+    from pydub import AudioSegment
+
     return render(request, 'restaurant_review/index.html', {'LastViewedRestaurant': lastViewedRestaurant, 'restaurants': restaurants})
 
 @cache_page(60)

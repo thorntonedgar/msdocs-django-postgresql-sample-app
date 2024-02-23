@@ -1,4 +1,14 @@
+pre-build: |
+  apt-get update && apt-get install -y --no-install-recommends \
+    gcc \
+    libpango-1.0-0 \
+    libpangoft2-1.0-0 \
+    libjpeg-dev \
+    libopenjp2-7-dev \
+    libffi-dev \
+    libglib2.0-dev \
+	  ffmpeg
+
 post-build: |
-    python manage.py makemigrations
-    python manage.py migrate
-    
+  python manage.py makemigrations
+  python manage.py migrate
